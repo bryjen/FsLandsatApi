@@ -4,9 +4,13 @@ obj
 
 .env
 FsLandsatApi.sln.DotSettings.user
+LandsatReflectance.sln.DotSettings.user
 
 .fake
 deploy.fsx.lock
+
+.nuke
+LandsatReflectance.Build/LandsatReflectance.Build.csproj.DotSettings
 
 # Pipeline output directory
 build-artifacts
