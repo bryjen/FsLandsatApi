@@ -1,14 +1,19 @@
-﻿module FsLandsatApi.Services.DbUserTargetService
+﻿module LandsatReflectance.Api.Services.DbUserTargetService
 
 open System
 open System.Threading.Tasks
-open FsLandsatApi.Models.User
-open FsLandsatApi.Options
-open FsLandsatApi.Services.DbUserService
-open FsToolkit.ErrorHandling
 open Microsoft.Extensions.Logging
 open Microsoft.Extensions.Options
+
 open MySql.Data.MySqlClient
+
+open FsToolkit.ErrorHandling
+
+open LandsatReflectance.Api.Models.User
+open LandsatReflectance.Api.Options
+open LandsatReflectance.Api.Services.DbUserService
+
+
 
 let tryCreateTarget
     (log: string -> unit)

@@ -1,17 +1,16 @@
-﻿module FsLandsatApi.Handlers.NotFoundHandler
+﻿module LandsatReflectance.Api.Handlers.NotFoundHandler
 
 open System
 
-open FsLandsatApi.Middleware.RequestIdMiddleware
-open FsLandsatApi.Models
-open Giraffe.ComputationExpressions
 open Microsoft.AspNetCore.Http
+open Microsoft.Extensions.Logging
+open Microsoft.Extensions.DependencyInjection
 
 open Giraffe
 
-open FsLandsatApi.Models.ApiResponse
-open Microsoft.Extensions.DependencyInjection
-open Microsoft.Extensions.Logging
+open LandsatReflectance.Api.Models.ApiResponse
+open LandsatReflectance.Api.Middleware.RequestIdMiddleware
+
 
 
 let notFoundHandler: HttpHandler =

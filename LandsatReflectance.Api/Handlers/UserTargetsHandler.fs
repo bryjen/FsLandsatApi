@@ -1,32 +1,27 @@
-﻿module FsLandsatApi.Handlers.UserTargetsHandler
+﻿module LandsatReflectance.Api.Handlers.UserTargetsHandler
 
 open System
 open System.IO
-open System.IdentityModel.Tokens.Jwt
 open System.Security.Claims
-open System.Text
 open System.Text.Json
 
-open System.Threading.Tasks
-open FsLandsatApi.Models.User
-open FsLandsatApi.Options
-open FsLandsatApi.Services
-open FsLandsatApi.Services.DbUserTargetService
 open Microsoft.AspNetCore.Http.Json
 open Microsoft.Extensions.Logging
 open Microsoft.Extensions.Options
 open Microsoft.FSharp.Core
 open Microsoft.AspNetCore.Http
-open Microsoft.AspNetCore.Identity
 open Microsoft.Extensions.DependencyInjection
 
 open Giraffe
 
 open FsToolkit.ErrorHandling
 
-open FsLandsatApi.Models.ApiResponse
-open FsLandsatApi.Services.DbUserService
-open Microsoft.IdentityModel.Tokens
+open LandsatReflectance.Api.Models.User
+open LandsatReflectance.Api.Models.ApiResponse
+open LandsatReflectance.Api.Services.DbUserService
+open LandsatReflectance.Api.Services.DbUserTargetService
+
+
 
 let private getRequestId (ctx: HttpContext) =
     match ctx.Items.TryGetValue("requestId") with

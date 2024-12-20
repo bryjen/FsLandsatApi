@@ -1,20 +1,19 @@
-﻿module FsLandsatApi.Routing
+﻿module LandsatReflectance.Api.Routing
 
-open FsLandsatApi.Handlers.SceneHandler
-open FsLandsatApi.Handlers.UserHandler
-open FsLandsatApi.Handlers.UserTargetsHandler
-open FsLandsatApi.Handlers.UserTargetsHandler.UserTargetsPatch
-open FsLandsatApi.Handlers.UserTargetsHandler.UserTargetsPost
-open FsLandsatApi.Middleware.RequestIdMiddleware
-open FsLandsatApi.Models.ApiResponse
-open FsLandsatApi.Models.User
-open FsLandsatApi.Models.Usgs.Scene
+open Microsoft.OpenApi.Models
+
 open Giraffe.EndpointRouting
 open Giraffe
 open Giraffe.OpenApi
-open Giraffe.ViewEngine
-open Microsoft.OpenApi.Models
-open Microsoft.AspNetCore.Builder
+
+open LandsatReflectance.Api.Handlers.SceneHandler
+open LandsatReflectance.Api.Handlers.UserHandler
+open LandsatReflectance.Api.Handlers.UserTargetsHandler
+open LandsatReflectance.Api.Handlers.UserTargetsHandler.UserTargetsPatch
+open LandsatReflectance.Api.Handlers.UserTargetsHandler.UserTargetsPost
+open LandsatReflectance.Api.Middleware.RequestIdMiddleware
+open LandsatReflectance.Api.Models.ApiResponse
+open LandsatReflectance.Api.Models.Usgs.Scene
 
 
 

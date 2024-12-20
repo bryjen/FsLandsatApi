@@ -1,12 +1,11 @@
-﻿module FsLandsatApi.Extensions
+﻿module LandsatReflectance.Api.Extensions
 
-open System.Threading.Tasks
-open Microsoft.AspNetCore.Identity
-open Microsoft.Extensions.DependencyInjection
-open Microsoft.Extensions.Logging
-
-open FsLandsatApi.Options
 open Microsoft.Extensions.Options
+open Microsoft.Extensions.Logging
+open Microsoft.Extensions.DependencyInjection
+
+open LandsatReflectance.Api.Options
+
 
         
 type IServiceCollection with

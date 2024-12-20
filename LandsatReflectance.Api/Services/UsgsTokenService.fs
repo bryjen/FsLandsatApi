@@ -1,18 +1,19 @@
-﻿module FsLandsatApi.Services.UsgsTokenService
+﻿module LandsatReflectance.Api.Services.UsgsTokenService
 
 open System
 open System.IO
-open System.Net.Http
-open System.Net.Http.Headers
 open System.Text
+open System.Net.Http
 open System.Text.Json
 open System.Threading.Tasks
-open FsLandsatApi.Json.Usgs.LoginToken
-open FsLandsatApi.Utils.UsgsHttpClient
+
 open Microsoft.Extensions.Logging
 open Microsoft.Extensions.Options
 
-open FsLandsatApi.Options
+open LandsatReflectance.Api.Options
+open LandsatReflectance.Api.Json.Usgs.LoginToken
+open LandsatReflectance.Api.Utils.UsgsHttpClient
+
 
 
 type UsgsTokenService(

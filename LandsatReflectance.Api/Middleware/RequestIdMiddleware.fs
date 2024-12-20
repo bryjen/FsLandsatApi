@@ -1,10 +1,13 @@
-﻿module FsLandsatApi.Middleware.RequestIdMiddleware
+﻿module LandsatReflectance.Api.Middleware.RequestIdMiddleware
 
 open System
 open Giraffe
+
 open Microsoft.AspNetCore.Http
-open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Logging
+open Microsoft.Extensions.DependencyInjection
+
+
 
 let requestIdMiddleware (next: HttpFunc) (ctx: HttpContext) =
     

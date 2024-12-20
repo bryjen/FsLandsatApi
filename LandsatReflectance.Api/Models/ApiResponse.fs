@@ -1,4 +1,4 @@
-﻿module FsLandsatApi.Models.ApiResponse
+﻿module LandsatReflectance.Api.Models.ApiResponse
 
 open System
 

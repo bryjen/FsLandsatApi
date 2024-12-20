@@ -1,4 +1,4 @@
-﻿module FsLandsatApi.Handlers.SceneHandler
+﻿module LandsatReflectance.Api.Handlers.SceneHandler
 
 open System
 
@@ -10,9 +10,10 @@ open Microsoft.Extensions.DependencyInjection
 open Giraffe
 
 open FsToolkit.ErrorHandling
-open FsLandsatApi.Models.Usgs.Scene
-open FsLandsatApi.Models.ApiResponse
-open FsLandsatApi.Services.UsgsSceneService
+
+open LandsatReflectance.Api.Models.Usgs.Scene
+open LandsatReflectance.Api.Models.ApiResponse
+open LandsatReflectance.Api.Services.UsgsSceneService
 
 
 

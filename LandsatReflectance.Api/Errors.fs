@@ -1,4 +1,4 @@
-﻿module FsLandsatApi.Errors
+﻿module LandsatReflectance.Api.Errors
 
 open System
 

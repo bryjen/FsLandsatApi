@@ -1,11 +1,14 @@
-﻿module FsLandsatApi.Json.Usgs.SceneSearch
+﻿module LandsatReflectance.Api.Json.Usgs.SceneSearch
 
 open System
 open System.Text.Json
 open System.Text.Json.Nodes
-open FsLandsatApi.Errors
-open FsLandsatApi.Models.Usgs.Scene
+
 open FsToolkit.ErrorHandling
+
+open LandsatReflectance.Api.Errors
+open LandsatReflectance.Api.Models.Usgs.Scene
+
 
 
 /// Creates a request to the endpoint 'scene-search' for some scene data.

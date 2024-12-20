@@ -1,4 +1,4 @@
-﻿module FsLandsatApi.Utils.UsgsHttpClient
+﻿module LandsatReflectance.Api.Utils.UsgsHttpClient
 
 open System.Net.Http
 

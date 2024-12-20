@@ -1,16 +1,17 @@
-﻿module FsLandsatApi.Services.UsgsSceneService
+﻿module LandsatReflectance.Api.Services.UsgsSceneService
 
-open System
 open System.IO
-open System.Net.Http
-open System.Net.Http.Headers
 open System.Text
-open FsLandsatApi.Json.Usgs.SceneSearch
-open FsLandsatApi.Models.Usgs.Scene
-open FsLandsatApi.Utils.UsgsHttpClient
-open Microsoft.Extensions.Logging
-open FsLandsatApi.Services.UsgsTokenService
+open System.Net.Http
+
 open Microsoft.FSharp.Control
+
+open LandsatReflectance.Api.Models.Usgs.Scene
+open LandsatReflectance.Api.Utils.UsgsHttpClient
+open LandsatReflectance.Api.Json.Usgs.SceneSearch
+open LandsatReflectance.Api.Services.UsgsTokenService
+
+
 
 let simplifySceneData (sceneData: SceneData) =
     match Array.tryHead sceneData.BrowseInfos with
@@ -57,7 +58,7 @@ type UsgsSceneService(
                     let responseContent = streamReader.ReadToEnd()
                     
                     tryParseSceneSearchResponse responseContent
-                    |> Result.map (fun sceneDataArray -> Array.map simplifySceneData sceneDataArray)
+                    |> Result.map (Array.map simplifySceneData)
                 | Error errorValue ->
                     Error errorValue
         }

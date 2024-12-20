@@ -1,4 +1,4 @@
-﻿module FsLandsatApi.Utils.AppJsonSerializer
+﻿module LandsatReflectance.Api.Utils.AppJsonSerializer
 
 open System.Text.Json
 open Giraffe

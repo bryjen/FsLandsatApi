@@ -1,4 +1,4 @@
-﻿module FsLandsatApi.Models.User
+﻿module LandsatReflectance.Api.Models.User
 
 open System
 

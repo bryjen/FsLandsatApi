@@ -1,4 +1,4 @@
-﻿module FsLandsatApi.Options
+﻿module LandsatReflectance.Api.Options
 
 open System
 

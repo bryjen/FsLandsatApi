@@ -1,8 +1,11 @@
-﻿module FsLandsatApi.Json.Usgs.LoginToken
+﻿module LandsatReflectance.Api.Json.Usgs.LoginToken
 
 open System
 open System.Text.Json
-open FsLandsatApi.Errors
+
+open LandsatReflectance.Api.Errors
+
+
 
 let tryParseLoginTokenResponse (jsonResponse: string) : Result<string, Exception> =
     try

@@ -1,4 +1,4 @@
-﻿module FsLandsatApi.Utils.PasswordHashing
+﻿module LandsatReflectance.Api.Utils.PasswordHashing
 
 open Microsoft.AspNetCore.Identity
 

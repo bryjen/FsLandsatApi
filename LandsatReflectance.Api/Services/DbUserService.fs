@@ -1,16 +1,16 @@
-﻿module FsLandsatApi.Services.DbUserService
+﻿module LandsatReflectance.Api.Services.DbUserService
 
 open System
 open System.Threading.Tasks
-open FsLandsatApi.Options
-open FsLandsatApi.Utils.PasswordHashing
-open Microsoft.AspNetCore.Identity
+
 open Microsoft.Extensions.Logging
 open Microsoft.Extensions.Options
-open System.Data
-open Microsoft.Net.Http.Headers
+
 open MySql.Data.MySqlClient
-open FsLandsatApi.Models.User
+
+open LandsatReflectance.Api.Options
+open LandsatReflectance.Api.Models.User
+open LandsatReflectance.Api.Utils.PasswordHashing
 
 
 

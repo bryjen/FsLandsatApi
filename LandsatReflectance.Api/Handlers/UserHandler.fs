@@ -1,4 +1,4 @@
-﻿module FsLandsatApi.Handlers.UserHandler
+﻿module LandsatReflectance.Api.Handlers.UserHandler
 
 open System
 open System.IO
@@ -18,11 +18,11 @@ open Giraffe
 
 open FsToolkit.ErrorHandling
 
-open FsLandsatApi.Options
-open FsLandsatApi.Models.User
-open FsLandsatApi.Models.ApiResponse
-open FsLandsatApi.Utils.PasswordHashing
-open FsLandsatApi.Services.DbUserService
+open LandsatReflectance.Api.Options
+open LandsatReflectance.Api.Models.User
+open LandsatReflectance.Api.Models.ApiResponse
+open LandsatReflectance.Api.Utils.PasswordHashing
+open LandsatReflectance.Api.Services.DbUserService
 
 
 [<AutoOpen>]

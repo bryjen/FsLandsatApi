@@ -1,4 +1,4 @@
-﻿module FsLandsatApi.Models.Usgs.Scene
+﻿module LandsatReflectance.Api.Models.Usgs.Scene
 
 open System
 

@@ -1,20 +1,7 @@
 open System
+open System.Text
 open System.Net.Http
 open System.Net.Http.Headers
-open System.Text
-open System.Text.Json
-open System.Threading.Tasks
-open FsLandsatApi.Handlers.NotFoundHandler
-open FsLandsatApi.Options
-open FsLandsatApi.Services
-open FsLandsatApi.Services.DbUserService
-open FsLandsatApi.Services.DbUserTargetService
-open FsLandsatApi.Services.UsgsSceneService
-open FsLandsatApi.Services.UsgsTokenService
-open FsLandsatApi.Utils
-open FsLandsatApi.Utils.AppJsonSerializer
-open FsLandsatApi.Utils.UsgsHttpClient
-open Giraffe.EndpointRouting
 open Microsoft.AspNetCore.Authentication.JwtBearer
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Http
@@ -24,16 +11,23 @@ open Microsoft.Extensions.Hosting
 open Microsoft.Extensions.Logging
 
 open Giraffe
+open Giraffe.EndpointRouting
 
-open FsLandsatApi.Extensions
+open Microsoft.OpenApi.Models
 open Microsoft.Extensions.Options
 open Microsoft.IdentityModel.Tokens
-open Microsoft.OpenApi.Models
+
+open LandsatReflectance.Api.Extensions
+open LandsatReflectance.Api.Handlers.NotFoundHandler
+open LandsatReflectance.Api.Options
+open LandsatReflectance.Api.Services.DbUserService
+open LandsatReflectance.Api.Services.DbUserTargetService
+open LandsatReflectance.Api.Services.UsgsSceneService
+open LandsatReflectance.Api.Services.UsgsTokenService
+open LandsatReflectance.Api.Utils.AppJsonSerializer
+open LandsatReflectance.Api.Utils.UsgsHttpClient
 
 
-
-
-    
     
 let configureAppOptions (services: IServiceCollection) =
     let provider = services.BuildServiceProvider()
@@ -150,7 +144,7 @@ let configureApp (app: IApplicationBuilder) =
        .UseAuthentication()
        .UseAuthorization()
        
-       .UseGiraffe(FsLandsatApi.Routing.endpoints)
+       .UseGiraffe(LandsatReflectance.Api.Routing.endpoints)
        .UseGiraffe(notFoundHandler)
 
 [<EntryPoint>]
