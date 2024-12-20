@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FsLandsatApi", "FsLandsatApi\FsLandsatApi.fsproj", "{6A41B459-68E8-4D49-B4F6-626646A91142}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "LandsatReflectance.Api", "LandsatReflectance.Api\LandsatReflectance.Api.fsproj", "{6A41B459-68E8-4D49-B4F6-626646A91142}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
