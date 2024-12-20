@@ -1,0 +1,111 @@
+﻿@page "/Register"
+@using LandsatReflectance.UI.Components
+@using LandsatReflectance.UI.Services.Api
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@layout LoginRegisterLayout
+
+@inject NavigationManager NavigationManager
+@inject IWebAssemblyHostEnvironment Environment 
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
+@inject UserService UserService 
+
+<style>
+    .overlay {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+</style>
+
+<div style="width: 30%">
+    @RenderRegisterPanel
+</div>
+
+@code {
+    private RenderFragment RenderRegisterPanel => __builder =>
+    {
+        <MudPaper Elevation="5" Class="pa-5" Style="position: relative">
+            
+            <MudOverlay Visible="@m_isSendingData" DarkBackground="@true" Absolute="@true">
+                <MudProgressCircular Color="@Color.Primary" Indeterminate="@true" />
+            </MudOverlay>
+
+            <MudForm Model="@m_userModel" @ref="@m_mudForm" Validation="@m_userModelValidator.ValidateValue" ValidationDelay="0">
+
+                <MudText Typo="Typo.body2" Class="mb-2">
+                    <b>
+                        Register:
+                    </b>
+                </MudText>
+
+                <MudTextField id="firstNameField" T="string" Label="First Name" ShrinkLabel
+                              @bind-Value="@m_userModel.FirstName" For="@(() => m_userModel.FirstName)"
+                              InputType="InputType.Email" Margin="Margin.Dense" Variant="Variant.Filled" Typo="Typo.caption"
+                              OnKeyDown="@HandleKeyDown"
+                              Class="my-2"/>
+
+                <MudTextField id="lastNameField" T="string" Label="Last Name" ShrinkLabel
+                              @bind-Value="@m_userModel.LastName" For="@(() => m_userModel.LastName)"
+                              InputType="InputType.Email" Margin="Margin.Dense" Variant="Variant.Filled" Typo="Typo.caption"
+                              OnKeyDown="@HandleKeyDown"
+                              Class="my-2"/>
+
+                <MudTextField id="emailField" T="string" Label="Email" ShrinkLabel
+                              @bind-Value="@m_userModel.Email" For="@(() => m_userModel.Email)"
+                              InputType="InputType.Email" Margin="Margin.Dense" Variant="Variant.Filled" Typo="Typo.caption"
+                              OnKeyDown="@HandleKeyDown"
+                              Class="my-2"/>
+
+
+                <MudText Typo="Typo.caption" Class="mt-6">
+                    Please choose a strong password:
+                </MudText>
+                <MudTextField id="passwordField" T="string" Label="Password" ShrinkLabel
+                              @bind-Value="@m_userModel.Password" For="@(() => m_userModel.Password)"
+                              Margin="Margin.Dense" Variant="Variant.Filled" Typo="Typo.caption" IconSize="Size.Small"
+                              InputType="@m_passwordFieldInputType" Adornment="Adornment.End" AdornmentIcon="@PasswordFieldInputIcon"
+                              OnAdornmentClick="OnPasswordVisibilityButtonClicked" AdornmentAriaLabel="Toggle visibility"
+                              OnKeyDown="@HandleKeyDown"
+                              Class="my-2"/>
+
+                <MudTextField id="reEnterPasswordField" T="string" Label="Re-enter Password" ShrinkLabel
+                              @bind-Value="@m_userModel.PasswordReEnter" For="@(() => m_userModel.PasswordReEnter)"
+                              Margin="Margin.Dense" Variant="Variant.Filled" Typo="Typo.caption" IconSize="Size.Small"
+                              InputType="@m_passwordFieldInputType" Adornment="Adornment.End" AdornmentIcon="@PasswordFieldInputIcon"
+                              OnAdornmentClick="OnPasswordVisibilityButtonClicked" AdornmentAriaLabel="Toggle visibility"
+                              OnKeyDown="@HandleKeyDown"
+                              Class="my-2"/>
+
+
+                <MudStack Justify="Justify.FlexStart" AlignItems="AlignItems.Center" Row="true">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small" Class="my-4" Style="max-width: 7rem" OnClick="SubmitForm">
+                        <MudText Typo="Typo.caption">
+                            Register
+                        </MudText>
+                    </MudButton>
+                    <MudLink Typo="Typo.caption" OnClick="@GoToLoginPage">
+                        Already have an account?
+                    </MudLink>
+
+                </MudStack>
+            </MudForm>
+
+            <MudDivider Class="my-4"/>
+
+            <MudText Typo="Typo.body2" Class="my-4">
+                <b>
+                    Or sign up with:
+                </b>
+            </MudText>
+
+            <MudStack Justify="Justify.FlexStart" AlignItems="AlignItems.Center" Row="true">
+                <MudIcon Icon="@Icons.Custom.Brands.Microsoft"/>
+                <MudIcon Icon="@Icons.Custom.Brands.Google"/>
+                <MudIcon Icon="@Icons.Custom.Brands.GitHub"/>
+            </MudStack>
+        </MudPaper>
+    };
+}

@@ -1,0 +1,19 @@
+﻿<MudNavMenu>
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">
+        Home
+    </MudNavLink>
+    <MudNavLink Href="/Map" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Map">
+        Map
+    </MudNavLink>
+    <MudNavLink Href="/Dashboard" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">
+        Dashboard
+    </MudNavLink>
+    <MudNavLink Href="/weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">
+        Weather
+    </MudNavLink>
+    <MudDivider Class="my-2" />
+    <MudStack Row="true">
+        <MudSpacer/>
+        <MudText>Version @this.GetType().Assembly.GetName().Version?.ToString(3)</MudText>
+    </MudStack>
+</MudNavMenu>

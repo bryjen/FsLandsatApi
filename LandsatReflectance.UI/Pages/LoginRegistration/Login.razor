@@ -1,0 +1,106 @@
+﻿@page "/Login"
+@layout LoginRegisterLayout
+
+
+
+<div style="width: 30%">
+    @RenderLoginPanel
+    <br/>
+    <br/>
+    @RenderSummaryRegisterPanel
+</div>
+
+
+
+@code {
+    private RenderFragment RenderLoginPanel => __builder =>
+    {
+        <MudPaper Elevation="5" Class="pa-5" Style="position: relative">
+
+            <MudOverlay Visible="@m_isProcessing" DarkBackground="@true" Absolute="@true">
+                <MudProgressCircular Color="@Color.Primary" Indeterminate="@true" />
+            </MudOverlay>
+            
+            <MudForm>
+                <MudText Typo="Typo.body2" Class="mb-3">
+                    <b>
+                        Sign in with an existing account:
+                    </b>
+                </MudText>
+
+                <MudTextField T="string" Label="Email"
+                              @bind-Value="@m_email"
+                              ShrinkLabel
+                              InputType="InputType.Email" Margin="Margin.Dense" Variant="Variant.Filled" Typo="Typo.caption"
+                              Class="mt-3"></MudTextField>
+
+                <MudTextField T="string" Label="Password"
+                              @bind-Value="@m_password"
+                              ShrinkLabel
+                              Margin="Margin.Dense" Variant="Variant.Filled" Typo="Typo.caption" IconSize="Size.Small"
+                              InputType="@m_passwordFieldInputType" Adornment="Adornment.End" AdornmentIcon="@PasswordFieldInputIcon"
+                              OnAdornmentClick="OnPasswordVisibilityButtonClicked" AdornmentAriaLabel="Toggle visibility"
+                              Class="mt-2"></MudTextField>
+
+                <MudStack Justify="Justify.FlexStart" AlignItems="AlignItems.Center" Row="true">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small" OnClick="@TryLogin" Class="my-4">
+                        <MudText Typo="Typo.caption">
+                            Login
+                        </MudText>
+                    </MudButton>
+                    <MudLink Href="#" Typo="Typo.caption">
+                        Forgot password?
+                    </MudLink>
+                </MudStack>
+            </MudForm>
+
+            <MudDivider Class="my-4"/>
+
+            <MudText Typo="Typo.body2" Class="my-4">
+                <b>
+                    Or sign in with:
+                </b>
+            </MudText>
+
+            <MudStack Justify="Justify.FlexStart" AlignItems="AlignItems.Center" Row="true">
+                <MudIcon Icon="@Icons.Custom.Brands.Microsoft"/>
+                <MudIcon Icon="@Icons.Custom.Brands.Google"/>
+                <MudIcon Icon="@Icons.Custom.Brands.GitHub"/>
+            </MudStack>
+        </MudPaper>
+    };
+
+    private RenderFragment RenderSummaryRegisterPanel => __builder =>
+    {
+        <MudPaper Elevation="5" Class="pa-5" Style="position: relative">
+
+            <MudOverlay Visible="@m_isProcessing" DarkBackground="@true" Absolute="@true">
+            </MudOverlay>
+            
+            <MudText Typo="Typo.caption" Class="mb-3">
+                <b>
+                    Not registered yet?
+                </b>
+            </MudText>
+
+            <MudText Typo="Typo.body1" Class="mb-3">
+                <b>
+                    Create an account:
+                </b>
+            </MudText>
+            
+            <MudTextField T="string" Label="Email" ShrinkLabel
+                          @bind-Value="@m_registrationEmail"
+                          InputType="InputType.Email" Margin="Margin.Dense" Variant="Variant.Filled" Typo="Typo.caption"
+                          Class="mt-3">
+            </MudTextField>
+
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small" Class="mt-4" OnClick="@GoToRegistrationPage">
+                <MudText Typo="Typo.caption">
+                    Register
+                </MudText>
+            </MudButton>
+        </MudPaper>
+    };
+
+}

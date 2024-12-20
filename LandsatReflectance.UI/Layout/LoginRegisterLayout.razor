@@ -1,0 +1,143 @@
+﻿@using LandsatReflectance.UI.Services
+@using MudBlazor.Utilities
+@using LandsatReflectance.UI.Components
+
+@inherits LayoutComponentBase
+
+@inject UserInterfaceService UserInterfaceService
+@inject CurrentUserService CurrentUserService
+
+<MudThemeProvider Theme="@UserInterfaceService.MudTheme" IsDarkMode="UserInterfaceService.IsDarkMode"/>
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<FullPageLoadingOverlay @ref="@m_fullPageLoadingOverlay" />
+
+<style>
+    .logo {
+        background-image: url('logo.webp');
+        height: 80%;
+        aspect-ratio: 1 / 1;
+        background-size: cover;
+        background-position: center;
+
+        clip-path: circle();
+    }
+</style>
+
+<div>
+     <main>
+         <MudLayout>
+             <MudAppBar Elevation="1">
+                 <div style="@m_mudAppBarDivStyles">
+                     
+                     <div class="logo" alt="Flat Earthers Logo"></div>
+
+                     <MudText Typo="Typo.caption" Class="ml-3">Flat Earthers</MudText>
+                     
+                     @*
+                     @if (CurrentUserService.User is null)
+                     {
+                         <MudText Typo="Typo.caption" Class="ml-3">Flat Earthers</MudText>
+                     }
+                     else
+                     {
+                         <MudLink Typo="Typo.caption" Style="font-size: 0.7rem">
+                             @CurrentUserService.User.Email
+                         </MudLink>
+                     }
+*@
+                 </div>
+             </MudAppBar>
+             
+             <MudMainContent Class="mt-16 pa-4" Style="margin: 0 15rem">
+                 <MudStack Justify="Justify.FlexStart" AlignItems="AlignItems.Start" StretchItems="StretchItems.None" Row="@true"
+                           Style="margin: 2rem 0 0 0">
+                     <CascadingValue Value="@m_fullPageLoadingOverlay">
+                         @RenderTextBlock
+                         @Body
+                     </CascadingValue>
+                 </MudStack>
+
+             </MudMainContent>
+         </MudLayout>
+    </main>
+</div>
+
+@code {
+    private const string ContentMargins = "margin: 0 15rem";
+
+    private RenderFragment RenderTextBlock => __builder =>
+    {
+        (string, string, string)[] titleAndBodyContents =
+        [
+            (
+                Icons.Material.Filled.SaveAs,
+                "Save between sessions", 
+                "Target images, metadata, and information are saved between sessions."
+            ),
+            (
+                Icons.Material.Filled.NotificationsActive,
+                "Receive notifications",
+                "Get notified when a new landsat image has been posted about your selected target."
+            ),
+            (
+                Icons.Material.Filled.DashboardCustomize,
+                "Extra features",
+                "Customize when & how you get notified, etc."
+            )
+        ];
+        
+        <div style="max-width: 40%; margin: 0 12.5rem 0 0">
+            <ul>
+                <li>
+                    <MudText Typo="Typo.h5">
+                        <b>
+                            Features of a Flat Earthers account:
+                        </b>
+                    </MudText>
+                </li>
+                @foreach ((string icon, string titleContent, string bodyContent) in titleAndBodyContents)
+                {
+                    <li class="my-4">
+                        @RenderTextListItem(icon, titleContent, bodyContent)
+                    </li>
+                }
+            </ul>
+        </div>
+    };
+
+    private RenderFragment RenderTextListItem(string icon, string titleContent, string bodyContent) =>
+        @<MudStack Justify="Justify.FlexStart" AlignItems="AlignItems.Center" StretchItems="StretchItems.End" Row="@true"
+                   Class="my-8">
+            <MudIcon Icon="@icon" Style="@m_featuresListIconStyles"/>
+            <div class="mt-1">
+                <MudText Typo="Typo.body1">
+                    <b>
+                        @titleContent
+                    </b>
+                </MudText>
+                <MudText Typo="Typo.body2">
+                    @bodyContent
+                </MudText>
+            </div>
+        </MudStack>;
+        
+
+    private readonly string m_featuresListIconStyles = new StyleBuilder()
+        .AddStyle("font-size: 3.5rem")
+        .Build();
+    
+    private readonly string m_mudAppBarDivStyles = new StyleBuilder()
+        .AddStyle("display: flex")
+        .AddStyle("justify-content: space-between")
+        .AddStyle("flex-direction: row")
+        .AddStyle("align-items: center")
+        .AddStyle("height: 100%")
+        .AddStyle("width: 100%")
+        .AddStyle(ContentMargins)
+        .Build();
+
+    private FullPageLoadingOverlay m_fullPageLoadingOverlay = new();
+}

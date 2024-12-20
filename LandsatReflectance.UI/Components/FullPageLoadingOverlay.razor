@@ -1,0 +1,20 @@
+﻿
+<style>
+    .full-page-element {
+        top: 0;
+        left: 0;
+        width: 100vw !important;
+        height: 100vh !important;
+        z-index: 9999;
+    }
+</style>
+
+<MudOverlay Visible="@m_isVisible" DarkBackground="@true" Absolute="@true" Class="full-page-element">
+    <MudProgressCircular Color="@Color.Primary" Indeterminate="@true"></MudProgressCircular>
+    @if (m_overlayMessage is not null)
+    {
+        <MudText Align="@Align.Center" Style="white-space: pre-wrap">
+            @m_overlayMessage
+        </MudText>
+    }
+</MudOverlay>

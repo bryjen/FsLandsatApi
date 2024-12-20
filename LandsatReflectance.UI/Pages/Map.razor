@@ -1,0 +1,9 @@
+﻿@page "/Map"
+@using GoogleMapsComponents
+
+
+<MudPaper Elevation="5" Style="@ParentDivHeight">
+    <div style="width: 100%; height: 100%">
+        <GoogleMap @ref="@m_googleMap" Id="map1" Options="@m_mapOptions" Height="100%" OnAfterInit="OnAfterMapRender"></GoogleMap>
+    </div>
+</MudPaper>

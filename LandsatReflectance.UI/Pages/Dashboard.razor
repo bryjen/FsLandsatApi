@@ -1,0 +1,24 @@
+﻿d@page "/Dashboard"
+@using System.Text.Json
+
+@inject HttpClient HttpClient
+@inject JsonSerializerOptions JsonSerializerOptions
+
+@code {
+    private RenderFragment Render => __builder =>
+    {
+    };
+
+    private RenderFragment RenderTable => __builder =>
+    {
+        <MudTable Items="@(Array.Empty<string>())">
+            <HeaderContent>
+                <MudTh>Latitude</MudTh>
+                <MudTh>Longitude</MudTh>
+                <MudTh>Minimum Cloud Cover</MudTh>
+                <MudTh>Max Cloud Cover</MudTh>
+                <MudTh>Notification Offset</MudTh>
+            </HeaderContent>
+        </MudTable>
+    };
+}

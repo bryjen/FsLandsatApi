@@ -1,0 +1,127 @@
+﻿@using LandsatReflectance.UI.Services
+@using LandsatReflectance.UI.Components
+@inherits LayoutComponentBase
+
+@inject UserInterfaceService UserInterfaceService
+@inject CurrentUserService CurrentUserService
+
+@inject Wrs2AreasService Wrs2AreasService
+
+
+
+<style>
+    .logo {
+        background-image: url('logo.webp');
+        height: 70%;
+        aspect-ratio: 1 / 1;
+        background-size: cover;
+        background-position: center;
+
+        clip-path: circle();
+    }
+</style>
+
+<MudThemeProvider Theme="@UserInterfaceService.MudTheme" IsDarkMode="UserInterfaceService.IsDarkMode"/>
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<FullPageLoadingOverlay @ref="@m_fullPageLoadingOverlay" />
+
+<div class="page mud-layout">
+     <main>
+        <MudLayout>
+            <MudAppBar Elevation="1" Dense="true">
+                <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" 
+                               OnClick="@((e) => DrawerToggle())"
+                               Class="mr-6"/>
+                <div alt="Flat Earthers Logo" class="logo mx-2"></div>
+                <MudText Typo="Typo.body1" Class="mx-2">Flat Earthers</MudText>
+                
+                <MudSpacer/>
+
+                <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle"
+                               Class="mx-2"/>
+                
+                @RenderAccountInformation
+                
+@*
+                <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End"/>
+*@
+            </MudAppBar>
+            <MudDrawer @bind-Open="m_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+                <NavMenu/>
+            </MudDrawer>
+            <MudMainContent>
+                <CascadingValue Value="@m_fullPageLoadingOverlay">
+                    @Body
+                </CascadingValue>
+            </MudMainContent>
+        </MudLayout>
+    </main>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+
+
+
+@code {
+    private RenderFragment RenderAccountInformation => __builder =>
+    {
+        /*
+        if (CurrentUserService.User is null)
+        {
+            <MudButton Href="/Login" Variant="Variant.Text" Class="mx-1">
+                Sign in
+            </MudButton>
+            <MudButton Href="/Register" Variant="Variant.Outlined" Class="mx-1">
+                Sign up
+            </MudButton>
+        }
+        else
+        {
+            <MudLink Typo="Typo.caption" Style="font-size: 0.7rem">
+                @CurrentUserService.User.Email
+            </MudLink>
+        }
+         */
+    };
+
+    private FullPageLoadingOverlay m_fullPageLoadingOverlay = new();
+
+    
+    protected override async Task OnAfterRenderAsync(bool isFirstRender)
+    {
+        /*
+        if (Wrs2AreasService.IsInitialized())
+        {
+            var workFunc = async () => await Wrs2AreasService.InitWrs2Areas();
+            var onWorkFinishedCallback = () => Task.CompletedTask;
+            await m_fullPageLoadingOverlay.ExecuteWithOverlay("Loading landsat area data.\nPlease wait ...", workFunc, onWorkFinishedCallback);
+        }
+         */
+    }
+
+    private bool m_drawerOpen = false;
+    
+    private void DrawerToggle()
+    {
+        m_drawerOpen = !m_drawerOpen;
+    }
+
+    private void DarkModeToggle()
+    {
+        UserInterfaceService.IsDarkMode = !UserInterfaceService.IsDarkMode;
+    }
+
+    public string DarkLightModeButtonIcon =>
+        UserInterfaceService.IsDarkMode switch
+        {
+            true => Icons.Material.Rounded.AutoMode,
+            false => Icons.Material.Outlined.DarkMode,
+        };
+}
